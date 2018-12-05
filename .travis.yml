@@ -17,10 +17,14 @@ cache:
      - ./node_modules
 
 before_install:
-  - echo -e "machine github.com\n  login $0baa0cac6750883c29776e3a854cff6173662d8f" > ~/.netrc
+  - echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
+  - git lfs pull
 
 install:
   - npm install
+
+before_script:
+  - yarn global add @angular/cli
 
 script:
   - ng test --single-run --no-progress --browser=ChromeHeadlessCI

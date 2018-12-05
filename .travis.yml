@@ -27,5 +27,5 @@ before_script:
   - yarn global add @angular/cli
 
 script:
-  - npm run test -- --single-run --no-progress --browser=ChromeHeadlessCI
-  - npm run e2e -- --no-progress --config=protractor-ci.conf.js
+  - npm run test -- --watch --browser=ChromeHeadlessCI
+  - npm run e2e -- --config=protractor-ci.conf.js

@@ -16,6 +16,9 @@ cache:
   directories:
      - ./node_modules
 
+before_install:
+  - echo -e "machine github.com\n  login $0baa0cac6750883c29776e3a854cff6173662d8f" > ~/.netrc
+
 install:
   - npm install
 

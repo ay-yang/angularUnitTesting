@@ -6,5 +6,5 @@
     "module": "es2015",
     "types": []
   },
-  "exclude": ["test.ts", "**/*.spec.ts", "**/*.e2e-spec.ts", "**/testing/*", "**/e2e/*"]
+  "exclude": ["test.ts", "**/*.spec.ts", "**/**/*.e2e-spec.ts", "**/testing/*", "**/e2e/*"]
 }

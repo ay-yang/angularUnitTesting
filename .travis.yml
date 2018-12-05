@@ -28,4 +28,4 @@ before_script:
 
 script:
   - ng test --watch
-  - npm run e2e -- --config=protractor-ci.conf.js
+  - protractor protractor-ci.conf.js

@@ -119,8 +119,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "protractor-ci.conf.js",
-            "devServerTarget": "angular.io-example:serve",
-            "webdriverUpdate": false
+            "devServerTarget": "angular.io-example:serve"
           }
         },
         "lint": {

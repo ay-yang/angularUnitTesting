@@ -32,9 +32,7 @@ jobs:
     - stage: "unit tests"
       script: npm run test -- --progress=false --watch=false --browsers=ChromeHeadlessCI
     - stage: "e2e tests"
-      script: npm run start
-    - script: npx webdriver-manager update
-    - script: npm run e2e -- --webdriverUpdate=false --devServerTarget=angular.io-example:serve --protractorConfig=protractor-ci.conf.js
+      script: npm run e2e -- --webdriverUpdate=false --devServerTarget=angular.io-example:serve --protractorConfig=protractor-ci.conf.js
 
 notifications:
   email:

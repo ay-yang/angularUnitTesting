@@ -25,8 +25,12 @@ install:
 
 before_script:
   - yarn global add @angular/cli
-  - npm run start
 
-script:
-  - npm run test -- --browsers=ChromeHeadlessCI
-  - protractor protractor-ci.conf.js
+jobs:
+  include:
+    - stage: "unit tests"
+      script: npm run test -- --browsers=ChromeHeadlessCI
+    - stage: deploy
+      script: npm run start
+    - stage: "e2e tests"
+      script: protractor protractor-ci.conf.js

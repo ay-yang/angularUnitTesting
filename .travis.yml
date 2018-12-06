@@ -25,6 +25,7 @@ install:
 
 before_script:
   - yarn global add @angular/cli
+  - npm run webdriver-update
 
 jobs:
   include:
@@ -32,10 +33,15 @@ jobs:
       script: npm run test -- --progress=false --watch=false --browsers=ChromeHeadlessCI
     - stage: "e2e tests"
       script: npm run start
-    - script: npm run webdriver-update
-    - script: npm run e2e
+    - script: npm run e2e -- --webdriverUpdate=false --devServerTarget=angular.io-example:serve --protractorConfig=protractor-ci.conf.js
+    - stage: "e2e tests V2"
+      script: npm run start
+    - script: npm run protractor
 
 notifications:
   email:
     - fmanrique@tangerinesoftware.com
     - yyang@tangerinesoftware.com
+
+  on_success: always
+  on_failure: always # default: always

@@ -33,4 +33,9 @@ jobs:
     - stage: "e2e tests"
       script: npm run start
     - script: npm run webdriver-update
-    - script: npm run e2e -- --webdriverUpdate=false
+    - script: npm run e2e
+
+notifications:
+  email:
+    - fmanrique@tangerinesoftware.com
+    - yyang@tangerinesoftware.com

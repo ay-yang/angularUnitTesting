@@ -34,6 +34,9 @@ jobs:
     - stage: "e2e tests"
       script: npm run e2e -- --webdriverUpdate=false --devServerTarget=angular.io-example:serve --protractorConfig=protractor-ci.conf.js
 
+after_failure:
+  - git reset --soft HEAD~1
+
 notifications:
   email:
     - fmanrique@tangerinesoftware.com # this guy loves emails
@@ -41,3 +44,5 @@ notifications:
 
   on_success: always
   on_failure: always # default: always
+
+

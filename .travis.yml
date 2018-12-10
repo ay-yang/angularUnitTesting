@@ -22,6 +22,11 @@ install:
 before_script:
   - yarn global add @angular/cli
 
+branches:
+  only:
+  - master
+  - test_branch
+
 jobs:
   include:
     - stage: "unit tests"

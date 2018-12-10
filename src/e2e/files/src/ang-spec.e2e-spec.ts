@@ -5,11 +5,16 @@
 // then must launch heroes app: npm start
 // then run this command to start e2e tests: protractor (path of)protractor.conf.js
 
-import { async } from '@angular/core/testing';
+// OR run: npm run e2e -- --no-webdriver-update
 
+import { async, TestBed } from '@angular/core/testing';
 import {browser, element, by, By, $, $$, ExpectedConditions} from 'protractor';
 
 import { AppPage } from "./app.po";
+import { HeroService } from "../../../app/model/hero.service";
+import {
+  HttpModule, Http, XHRBackend, Response, ResponseOptions
+} from '@angular/http';
 
 describe('Protractor Demo App VERSION 2', ()=> { // dummy demo
   it('should have a title (synchronous syntax)', () => {
@@ -56,6 +61,12 @@ describe('Angular tour of heroes test', function() {
     $('a[routerLink="/heroes"]').click();
     expect($('app-heroes')).toBeTruthy();
     expect($('h2').getAttribute('innerText')).toEqual("My Heroes"); // checks title
+  });
+
+  it('should navigate to hero details: ', () => {
+   // const http = TestBed.get(Http);
+    $('.hero').click();
+    expect($('app-hero-detail')).toBeTruthy();
   });
 
   // note: in real world applications some navigation takes time to execute, so this async version is better generally speaking

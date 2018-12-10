@@ -16,15 +16,16 @@ cache:
   directories:
      - ./node_modules
 
-before_install:
-  - echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
-  - git lfs pull
-
 install:
   - npm install
 
 before_script:
   - yarn global add @angular/cli
+
+branches:
+  only:
+  - master
+  - test_branch
 
 jobs:
   include:
@@ -35,7 +36,6 @@ jobs:
     - script: npm run e2e -- --webdriverUpdate=false --devServerTarget=angular.io-example:serve --protractorConfig=protractor-ci.conf.js
 
 after_failure:
-  - git reset --soft HEAD~1
 
 notifications:
   email:

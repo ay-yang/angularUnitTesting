@@ -25,14 +25,14 @@ install:
 
 before_script:
   - yarn global add @angular/cli
-  - npx webdriver-manager update
 
 jobs:
   include:
     - stage: "unit tests"
       script: npm run test -- --progress=false --watch=false --browsers=ChromeHeadlessCI
     - stage: "e2e tests"
-      script: npm run e2e -- --webdriverUpdate=false --devServerTarget=angular.io-example:serve --protractorConfig=protractor-ci.conf.js
+      script: npx webdriver-manager update
+    - script: npm run e2e -- --webdriverUpdate=false --devServerTarget=angular.io-example:serve --protractorConfig=protractor-ci.conf.js
 
 after_failure:
   - git reset --soft HEAD~1

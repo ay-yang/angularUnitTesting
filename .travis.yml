@@ -29,8 +29,8 @@ branches:
 
 env: # important!
 matrix:
-  - stage: "unit tests"
-    script: npm run test -- --progress=false --watch=false --browsers=ChromeHeadlessCI
+  - include:
+  - script: npm run test -- --progress=false --watch=false --browsers=ChromeHeadlessCI
     env: TEST_SUITE=unit
 
   allow_failures:

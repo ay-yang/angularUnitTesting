@@ -27,12 +27,10 @@ branches:
   - master
   - test_branch
 
-env: # important!
 jobs:
   include:
     - stage: "Tests: "
       script: npm run test -- --progress=false --watch=false --browsers=ChromeHeadlessCI
-      script: npx webdriver-manager update
       script: npm run e2e -- --webdriverUpdate=false --devServerTarget=angular.io-example:serve --protractorConfig=protractor-ci.conf.js
 
 after_failure:

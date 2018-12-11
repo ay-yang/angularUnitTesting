@@ -28,13 +28,6 @@ branches:
   - test_branch
 
 env: # important!
-matrix:
-  - include:
-  - script: npm run test -- --progress=false --watch=false --browsers=ChromeHeadlessCI
-    env: TEST_SUITE=unit
-
-  allow_failures:
-    env: TEST_SUITE=unit
 
 jobs:
   include:
@@ -44,7 +37,10 @@ jobs:
       script: npx webdriver-manager update
     - script: npm run e2e -- --webdriverUpdate=false --devServerTarget=angular.io-example:serve --protractorConfig=protractor-ci.conf.js
 
+matrix:
+
 after_failure:
+    - script: npm run e2e -- --webdriverUpdate=false --devServerTarget=angular.io-example:serve --protractorConfig=protractor-ci.conf.js
 
 notifications:
   email:

@@ -49,7 +49,6 @@ describe('Angular tour of heroes test', function() {
     $('a[routerLink="/about"]').click().then((page)=> {
       browser.getCurrentUrl().then((url)=>{
         browser.pause();
-        expect(url).toEqual('http://localhost:4200/'); //check link
         expect(url).toEqual('http://localhost:4200/about'); //check link
       });
       expect($('h2').getAttribute('innerText')).toEqual("About"); // checks title

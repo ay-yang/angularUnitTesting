@@ -27,6 +27,15 @@ branches:
   - master
   - test_branch
 
+env: # important!
+matrix:
+  - stage: "unit tests"
+    script: npm run test -- --progress=false --watch=false --browsers=ChromeHeadlessCI
+    env: TEST_SUITE=unit
+
+  allow_failures:
+    env: TEST_SUITE=unit
+
 jobs:
   include:
     - stage: "unit tests"

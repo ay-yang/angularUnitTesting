@@ -124,6 +124,6 @@ describe('Angular tour of heroes test with AppPage', function() {
       expect(routers[1].getText()).toEqual('Heroes');
       expect(routers[2].getText()).toEqual('About');
     })
-    // browser.sleep(50000); // eeeh you have 1 minute to debug
+    // browser.sleep(50000); // eeeh you have 1 minute to debug?
   });
 });

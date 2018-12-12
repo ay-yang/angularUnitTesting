@@ -13,14 +13,6 @@ import {browser, element, by, By, $, $$, ExpectedConditions} from 'protractor';
 import { AppPage } from "./app.po";
 import { InMemoryDataService } from "../../../app/in-memory-data.service";
 
-describe('Protractor Demo App VERSION 2', ()=> { // dummy demo
-  it('should have a title (synchronous syntax)', () => {
-    browser.get('http://juliemr.github.io/protractor-demo/');
-
-    expect(browser.getTitle()).toEqual('Super Calculator');
-  });
-});
-
 describe('Angular tour of heroes test', function() {
 
   beforeEach(async() => {
@@ -28,11 +20,7 @@ describe('Angular tour of heroes test', function() {
     browser.waitForAngular();
   });
 
-  it('should have title', () => {
-    expect(browser.getTitle()).toEqual('App Under Test');
-  });
-
-  it('should have page title', () => {
+  it('should show page title', () => {
     expect($('h1'). //the equivalent of element(by.css('h1'));
     getAttribute('innerText')).toEqual("Test Tour of Heroes");
   });
@@ -48,20 +36,11 @@ describe('Angular tour of heroes test', function() {
   it('should navigate to about component and show title: ', async() => {
     $('a[routerLink="/about"]').click().then((page)=> {
       browser.getCurrentUrl().then((url)=>{
-        browser.pause();
         expect(url).toEqual('http://localhost:4200/about'); //check link
       });
       expect($('h2').getAttribute('innerText')).toEqual("About"); // checks title
       expect($('ng-component')).toBeTruthy();
     });
-  });
-
-  it('should show navigations', async() => {
-    await ($$("a")).then( routers => { // find all "a" elements, the equivalent of element.all(by.css('a'));
-      expect(routers[0].getText()).toEqual('Dashboard');
-      expect(routers[1].getText()).toEqual('Heroes');
-      expect(routers[2].getText()).toEqual('About');
-    })
   });
 
   // works
@@ -81,17 +60,18 @@ describe('Angular tour of heroes test', function() {
     const data = memory.createDb().heroes;
     let currentUrl: string
 
-    $$('.hero').then(function(heroes) {
+    $$('.hero').then( async(heroes) => {
       expect(heroes.length).toBeGreaterThan(1, "no heroes found");
       if(heroes.length > 1){
-        heroes[0].click(); // try to click on the first hero
-        currentUrl = "http://localhost:4200/heroes/" + data[0].id;
-        browser.getCurrentUrl().then((url)=>{
-          expect(url).toEqual(currentUrl, "failed to navigate"); //check link
-        });
+          heroes[0].click(); // try to click on the first hero
+          currentUrl = "http://localhost:4200/heroes/" + data[0].id;
+          browser.getCurrentUrl().then((url)=>{
+            expect(url).toEqual(currentUrl, "failed to navigate"); //check link
+          });
       }
     });
-      expect($('app-hero-detail')).toBeTruthy();
+
+    expect($('app-hero-detail')).toBeTruthy();
   });
 
   // note: in real world applications some navigation takes time to execute, so this async version is better generally speaking
@@ -108,6 +88,12 @@ describe('Angular tour of heroes test', function() {
   //     browser.debugger();
   //   });
   // });
+
+  function takeSS(){
+    browser.takeScreenshot().then(function (png) {
+      browser.writeScreenShot(png, 'exception.png');
+    });
+  }
 
 });
 
@@ -138,5 +124,6 @@ describe('Angular tour of heroes test with AppPage', function() {
       expect(routers[1].getText()).toEqual('Heroes');
       expect(routers[2].getText()).toEqual('About');
     })
+    // browser.sleep(50000); // eeeh you have 1 minute to debug
   });
 });

@@ -4,7 +4,7 @@
 const { SpecReporter } = require('jasmine-spec-reporter');
 
 exports.config = {
-  allScriptsTimeout: 11000,
+  // allScriptsTimeout: 11000,
   specs: [
     './src/**/*.e2e-spec.ts'
   ],
@@ -19,6 +19,15 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     print: function() {}
   },
+  autoWatch: true,
+  singleRun: false,
+  client: {
+    clearContext: false // leave Jasmine Spec Runner output visible in browser
+  },
+  angularCli: {
+    environment: 'dev'
+  },
+  port: 9876,
   onPrepare() {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.e2e.json')
@@ -27,7 +36,6 @@ exports.config = {
     // require('ts-node').register({
     //   project: 'files/tsconfig.e2e.json'
     // });
-
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
   }
 };

@@ -31,7 +31,10 @@ jobs:
   include:
     - stage: "Tests: "
       script: npm run test -- --progress=false --watch=false --browsers=ChromeHeadlessCI
+      name: "unit tests"
+    - script: npx webdriver-manager update
     - script: npm run e2e -- --webdriverUpdate=false --devServerTarget=angular.io-example:serve --protractorConfig=protractor-ci.conf.js
+      name: "e2e tests"
 
 after_failure:
 

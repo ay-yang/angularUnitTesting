@@ -3,7 +3,7 @@ import { browser, by, element, $ } from 'protractor';
 // helper component
 export class AppPage {
   navigateTo() {
-    return browser.get('http://localhost:4200/dashboard');
+    return browser.get('http://localhost:4200/');
   }
 
   getTitleText() {

@@ -29,11 +29,12 @@ branches:
 
 jobs:
   include:
-    - stage: "unit tests"
+    - stage: "Tests: "
+      name: "Unit tests "
       script: npm run test -- --progress=false --watch=false --browsers=ChromeHeadlessCI
-    - stage: "e2e tests"
-      script: npx webdriver-manager update
+    - script: npx webdriver-manager update
     - script: npm run e2e -- --webdriverUpdate=false --devServerTarget=angular.io-example:serve --protractorConfig=protractor-ci.conf.js
+      name: "E2E tests"
 
 after_failure:
 

@@ -18,6 +18,7 @@ cache:
 
 install:
   - npm install
+  - webdriver-manager update
 
 before_script:
   - yarn global add @angular/cli
@@ -32,7 +33,6 @@ jobs:
     - stage: "Tests: "
       name: "Unit tests "
       script: npm run test -- --progress=false --watch=false --browsers=ChromeHeadlessCI
-    - script: npx webdriver-manager update
     - script: npm run e2e -- --webdriverUpdate=false --devServerTarget=angular.io-example:serve --protractorConfig=protractor-ci.conf.js
       name: "E2E tests"
 
@@ -40,8 +40,6 @@ after_failure:
 
 notifications:
   email:
-    - fmanrique@tangerinesoftware.com # this guy loves emails
-    - yyang@tangerinesoftware.com
 
   on_success: always
   on_failure: always # default: always
